@@ -18,6 +18,8 @@ colnames(traniningData)[colnames(traniningData) == "GameGenre_2"] <- "Genre_Acti
 colnames(traniningData)[colnames(traniningData) == "GameGenre_3"] <- "Genre_RPG"
 colnames(traniningData)[colnames(traniningData) == "GameGenre_4"] <- "Genre_Simulation"
 
+traniningData <- traniningData[, c(setdiff(names(traniningData), "EngagementLevel"), "EngagementLevel")]
+
 testingData <- dummy_cols(testingData, select_columns = "Location", remove_selected_columns = TRUE)
 testingData <- dummy_cols(testingData, select_columns = "GameGenre", remove_selected_columns = TRUE)
 
@@ -31,6 +33,8 @@ colnames(testingData)[colnames(testingData) == "GameGenre_1"] <- "Genre_Sports"
 colnames(testingData)[colnames(testingData) == "GameGenre_2"] <- "Genre_Action"
 colnames(testingData)[colnames(testingData) == "GameGenre_3"] <- "Genre_RPG"
 colnames(testingData)[colnames(testingData) == "GameGenre_4"] <- "Genre_Simulation"
+
+testingData <- testingData[, c(setdiff(names(testingData), "EngagementLevel"), "EngagementLevel")]
 
 validationData <- dummy_cols(validationData, select_columns = "Location", remove_selected_columns = TRUE)
 validationData <- dummy_cols(validationData, select_columns = "GameGenre", remove_selected_columns = TRUE)
@@ -46,8 +50,8 @@ colnames(validationData)[colnames(validationData) == "GameGenre_2"] <- "Genre_Ac
 colnames(validationData)[colnames(validationData) == "GameGenre_3"] <- "Genre_RPG"
 colnames(validationData)[colnames(validationData) == "GameGenre_4"] <- "Genre_Simulation"
 
-validationData$loca
+validationData <- validationData[, c(setdiff(names(validationData), "EngagementLevel"), "EngagementLevel")]
 
-write.csv(traniningData, "TrainingEncoded.csv", row.names = TRUE)
-write.csv(validationData, "ValidationEncoded.csv", row.names = TRUE)
-write.csv(testingData, "TestingEncoded.csv", row.names = TRUE)
+write.csv(traniningData, "TrainingEncoded.csv", row.names = FALSE)
+write.csv(validationData, "ValidationEncoded.csv", row.names = FALSE)
+write.csv(testingData, "TestingEncoded.csv", row.names = FALSE)
